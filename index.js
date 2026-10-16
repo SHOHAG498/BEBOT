@@ -3,9 +3,8 @@ const bedrock = require('bedrock-protocol');
 const serverOptions = {
   host: 'srbedrock.falixsrv.me',
   port: 29382,
-  username: 'AFK_Bot', // বোটের ইন-গেম নাম
-  offline: true       // ক্র‍্যাকড সার্ভারের জন্য অফলাইন মোড
-  // এখানে version অংশটি সরিয়ে দেওয়া হয়েছে
+  username: 'AFK_Bot', 
+  offline: true // সার্ভার ক্র‍্যাকড হলে এটি ট্রু থাকবে
 };
 
 function createBot() {
@@ -19,7 +18,7 @@ function createBot() {
   client.on('spawn', () => {
     console.log('Bot spawned in the world. Starting AFK loop...');
     
-    // প্রতি ৩০ সেকেন্ড পর পর এএফকে কাটানোর জন্য চ্যাট পাঠানো
+    // প্রতি ৩০ সেকেন্ড পর পর চ্যাট মেসেজ পাঠিয়ে এএফকে রাখা
     setInterval(() => {
       try {
         client.queue('text', {
@@ -28,9 +27,9 @@ function createBot() {
           source_name: client.username,
           xuid: '',
           platform_chat_id: '',
-          message: 'Hello, I am an AFK bot!'
+          message: 'Hello, AFK bot is active!'
         });
-        console.log('Sent AFK message to keep active.');
+        console.log('Sent AFK message.');
       } catch (err) {
         console.log('Failed to send AFK action:', err.message);
       }
@@ -53,10 +52,10 @@ function createBot() {
 }
 
 function reconnect() {
-  console.log('Reconnecting in 5 seconds...');
+  console.log('Reconnecting in 10 seconds to prevent timeout...');
   setTimeout(() => {
     createBot();
-  }, 5000);
+  }, 10000); // ১০ সেকেন্ড বিরতি দিয়ে রিকানেক্ট করবে
 }
 
 createBot();
