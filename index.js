@@ -4,7 +4,7 @@ const serverOptions = {
   host: 'srbedrock.falixsrv.me',
   port: 29382,
   username: 'AFK_Bot', 
-  offline: true // সার্ভার ক্র‍্যাকড হলে এটি ট্রু থাকবে
+  offline: true 
 };
 
 function createBot() {
@@ -18,7 +18,6 @@ function createBot() {
   client.on('spawn', () => {
     console.log('Bot spawned in the world. Starting AFK loop...');
     
-    // প্রতি ৩০ সেকেন্ড পর পর চ্যাট মেসেজ পাঠিয়ে এএফকে রাখা
     setInterval(() => {
       try {
         client.queue('text', {
@@ -52,10 +51,10 @@ function createBot() {
 }
 
 function reconnect() {
-  console.log('Reconnecting in 10 seconds to prevent timeout...');
+  console.log('Reconnecting in 10 seconds...');
   setTimeout(() => {
     createBot();
-  }, 10000); // ১০ সেকেন্ড বিরতি দিয়ে রিকানেক্ট করবে
+  }, 10000);
 }
 
 createBot();
