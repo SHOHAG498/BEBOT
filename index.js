@@ -16,8 +16,28 @@ function createBot() {
   });
 
   client.on('spawn', () => {
-    console.log('Bot spawned in the world and is now safely AFK.');
-    // এখানে চ্যাট স্প্যাম বন্ধ রাখা হয়েছে যাতে সার্ভার থেকে কিক না করে
+    console.log('Bot spawned in the world. Starting walking/AFK loop...');
+    
+    // Proti 20 second por por server-e minor movement ba action pathanor loop
+    setInterval(() => {
+      try {
+        // Bedrock protocol er maddhome player action ba packet pathano
+        client.queue('player_auth_input', {
+          pitch: 0,
+          yaw: Math.random() * 360, // protibar mathar dik change korbe jate active thake
+          position: [0, 0, 0],
+          move_vector: [0.1, 0],
+          head_yaw: 0,
+          input_data: 0,
+          input_command: 0,
+          player_epoch: 0,
+          counter: 0
+        });
+        console.log('Sent walk/movement action to stay active.');
+      } catch (err) {
+        console.log('Movement action skipped:', err.message);
+      }
+    }, 20000);
   });
 
   client.on('disconnect', (packet) => {
