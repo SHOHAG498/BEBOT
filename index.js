@@ -16,24 +16,8 @@ function createBot() {
   });
 
   client.on('spawn', () => {
-    console.log('Bot spawned in the world. Starting AFK loop...');
-    
-    // প্রতি ৩০ সেকেন্ড পর পর চ্যাট মেসেজ পাঠিয়ে এএফকে রাখা
-    setInterval(() => {
-      try {
-        client.queue('text', {
-          type: 'chat',
-          needs_translation: false,
-          source_name: client.username,
-          xuid: '',
-          platform_chat_id: '',
-          message: 'Hello, AFK bot is active!'
-        });
-        console.log('Sent AFK message.');
-      } catch (err) {
-        console.log('Failed to send AFK action:', err.message);
-      }
-    }, 30000);
+    console.log('Bot spawned in the world and is now safely AFK.');
+    // এখানে চ্যাট স্প্যাম বন্ধ রাখা হয়েছে যাতে সার্ভার থেকে কিক না করে
   });
 
   client.on('disconnect', (packet) => {
@@ -55,7 +39,7 @@ function reconnect() {
   console.log('Reconnecting in 10 seconds...');
   setTimeout(() => {
     createBot();
-  }, 10000); // ১০ সেকেন্ড বিরতি দিয়ে রি-জয়েন করবে
+  }, 10000);
 }
 
 createBot();
