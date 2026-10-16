@@ -18,6 +18,7 @@ function createBot() {
   client.on('spawn', () => {
     console.log('Bot spawned in the world. Starting AFK loop...');
     
+    // প্রতি ৩০ সেকেন্ড পর পর চ্যাট মেসেজ পাঠিয়ে এএফকে রাখা
     setInterval(() => {
       try {
         client.queue('text', {
@@ -54,7 +55,7 @@ function reconnect() {
   console.log('Reconnecting in 10 seconds...');
   setTimeout(() => {
     createBot();
-  }, 10000);
+  }, 10000); // ১০ সেকেন্ড বিরতি দিয়ে রি-জয়েন করবে
 }
 
 createBot();
